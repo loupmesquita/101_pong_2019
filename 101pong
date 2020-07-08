@@ -1,0 +1,77 @@
+#!/usr/bin/python3
+##
+## EPITECH PROJECT, 2019
+## ping 
+## File description
+## pong
+##
+
+import sys
+import math
+from math import *
+
+
+##initializing variables :
+
+x0 = float(sys.argv[1])
+y0 = float(sys.argv[2])
+z0 = float(sys.argv[3])
+x1 = float(sys.argv[4])
+y1 = float(sys.argv[5])
+z1 = float(sys.argv[6])
+time = int(sys.argv[7])
+
+## error cases management :
+
+if len(sys.argv) != 8:
+    exit(84)
+if (time < 0):
+    exit(84)
+if len(sys.argv) == 1:
+    exit(84)
+if (sys.argv[-1].isdigit == 'False'):
+    exit(84)
+try:
+    time = int(sys.argv[7])
+except:
+       exit(84)
+##1er algorythm (velocity calculations)
+
+v1 = x1 - x0
+v2 = y1 - y0
+v3 = z1 - z0
+
+tmp = x1
+tmp1 = y1
+tmp2 = z1
+
+##print values with first algorythm
+
+print("The velocity vector of the ball is:") 
+print("(%.2f," % v1, "%.2f," % v2, "%.2f)" % v3)
+
+##2nd algorythm (coordinate calculation)
+
+while (time > 0):
+    x1 = x1 + v1
+    y1 = y1 + v2
+    z1 = z1 + v3
+    time = time - 1
+
+##print values with second algorythm
+
+time = int(sys.argv[7]) 
+print("At time t + "+ str(time) +", ball coordinates will be:")
+print("(%.2f," % x1, "%.2f," % y1, "%.2f)" % z1)
+
+##3rd algorythm (angle of incidence)
+
+angle = 90-(acos(abs(z1-z0)/sqrt(pow(x1-x0, 2)+pow(y1-y0, 2)+pow(z1-z0, 2))))*180/math.pi
+
+##print all values with 3rd algorythm
+
+if (tmp2 > 0 and z1 <= 0)or (tmp2 <= 0 and z1 > 0):
+    print("the incidence angle is:")
+    print("%.2f degrees" %angle)
+else:
+    print("The ball won't reach the paddle.")
